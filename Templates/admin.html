@@ -1,0 +1,34 @@
+{% extends 'adminbase.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Administration</title>
+  </head>
+  <body>
+    <h1>Liste des articles</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Date de publication</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for article in articles %}
+        <tr>
+          <td>{{ article[1] }}</td>
+          <td>{{ article[4] }}</td>
+          <td><a href="/admin/modifier/{{ article[2]}}">Modifier</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p><a href="/admin-nouveau">Créer un nouvel article</a></p>
+  </body>
+</html>
+
+{% endblock %}
