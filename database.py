@@ -1,8 +1,9 @@
 import sqlite3
 
+
 # gère l'accès à la BDD
 class Database:
-    
+
     def __init__(self):
         self.connection = None
 

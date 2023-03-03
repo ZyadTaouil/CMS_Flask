@@ -53,7 +53,7 @@ def admin():
 
 # route pour la modification d'un article
 @app.route('/admin/modifier/<identifiant>', methods=['GET', 'POST'])
-def modifier(identifiant):
+def modifier_article(identifiant):
     identifiants = get_db().get_all_articles_id()
     if identifiant not in identifiants:
         return render_template('404.html'), 404
