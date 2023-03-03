@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
+{% extends 'base.html' %}
 
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='article.css') }}">
-  </head>
+{% block content %}
+
   <body>
     <h1>{{ article[1] }}</h1>
     <p><strong>Publié le :</strong> {{ article[4] }}</p>
     <p><strong>Auteur :</strong> {{ article[3] }}</p>
     <div class="content">{{ article[5] }}</div>
-    <p><a href="{{ url_for('index') }}">Retour à l'accueil</a></p>
   </body>
 </html>
+
+{% endblock %}

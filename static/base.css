@@ -1,0 +1,73 @@
+:root {
+  --primary-color: #007bff; 
+  --secondary-color: #6c757d; 
+  --light-color: #f8f9fa; 
+  --dark-color: #343a40; 
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.nav-link {
+  color: var(--light-color);
+}
+
+.navbar-toggler-icon {
+  color: var(--light-color);
+}
+
+
+footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  text-align: center;
+}
+
+
