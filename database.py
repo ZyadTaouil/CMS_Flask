@@ -42,41 +42,52 @@ class Database:
         return new_articles
 
     # retourne les 5 derniers articles publiés à la date d'aujourd'hui
-    def get_last_five_posts(self):
+    def get_last_five_posts_of_the_day(self):
         cursor = self.get_connection().cursor()
         cursor.execute(
-            "select * from article Where date_publication = DATE('now','localtime') ORDER BY date_publication DESC LIMIT 5")
+            "select * from article Where date_publication = "
+            "DATE('now','localtime') "
+            "ORDER BY date_publication DESC LIMIT 5")
         publications = cursor.fetchall()
         return publications
 
     # fonction simulant un moteur de recherche
     def search(self, query):
         cursor = self.get_connection().cursor()
-        # Sélectionne les publications contenant la chaîne de recherche (soit dans le titre ou dans le paragraphe)
+        # Sélectionne les publications contenant la chaîne de recherche
+        # (soit dans letitre ou dans le paragraphe)
         cursor.execute(
-            "SELECT titre, date_publication, identifiant FROM article WHERE (titre LIKE ? OR paragraphe LIKE ?) AND date_publication <= date('now')",
+            "SELECT titre, date_publication, identifiant FROM article WHERE "
+            "(titre LIKE ? OR paragraphe LIKE ?) "
+            "AND date_publication <= date('now')",
             ('%' + query + '%', '%' + query + '%'))
         resultats = cursor.fetchall()
         return resultats
 
     # crée un article selon les données entrées
-    def create_article(self, titre, identifiant, auteur, date_publication, paragraphe):
+    def create_article(self, titre, identifiant, auteur, date_publication,
+                       paragraphe):
         connection = self.get_connection()
         cursor = connection.cursor()
-        cursor.execute(("insert into article(titre, identifiant, auteur, date_publication, paragraphe)"
-                        "values(?, ?, ?, ?, ?)"), (titre, identifiant, auteur, date_publication, paragraphe))
+        cursor.execute(("insert into article(titre, identifiant, auteur, "
+                        "date_publication, paragraphe)"
+                        "values(?, ?, ?, ?, ?)"),
+                       (titre, identifiant, auteur, date_publication,
+                        paragraphe))
         connection.commit()
 
     # modifie le titre
     def update_title(self, id, title):
         connection = self.get_connection()
         cursor = connection.cursor()
-        cursor.execute("update article SET titre = ? WHERE identifiant=?", (title, id))
+        cursor.execute("update article SET titre = ? WHERE identifiant=?",
+                       (title, id))
         connection.commit()
 
     # modifie le paragraphe
     def update_content(self, id, content):
         connection = self.get_connection()
         cursor = connection.cursor()
-        cursor.execute("update article SET paragraphe = ? WHERE identifiant=?", (content, id))
+        cursor.execute("update article SET paragraphe = ? WHERE identifiant=?",
+                       (content, id))
         connection.commit()

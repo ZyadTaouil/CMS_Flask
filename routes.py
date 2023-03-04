@@ -25,7 +25,7 @@ def close_connection(exception):
 
 @app.route('/')
 def index():
-    posts = get_db().get_last_five_posts()
+    posts = get_db().get_last_five_posts_of_the_day()
     return render_template('accueil.html', title="Publications", posts=posts)
 
 
