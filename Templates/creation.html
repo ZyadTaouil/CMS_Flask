@@ -12,6 +12,9 @@
 
         <div class="form-group">
             <label for="identifiant">identifiant :</label>
+            {% if erreur %}
+            <p class="error">{{ erreur }} </p>
+            {% endif %}
             <input type="text" class="form-control" id="identifiant" name="identifiant" required>
         </div>
 

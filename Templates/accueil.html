@@ -12,15 +12,19 @@
             </div>
         </form>
         <ul class="list-group">
-            {% for publication in posts %}
             <li class="list-group-item">
+                {% if posts %}
+            {% for publication in posts %}
                 <h2><a href="/article/{{ publication[2] }}"> {{ publication[1] }} </a></h2>
                 <p> <b> Identifiant : </b> {{ publication[2] }}</p>
                 <p> <b> Auteur : </b> {{ publication[3] }}</p>
                 <p> <b> Date de publication : </b> {{ publication[4] }}</p>
                 <p> <b> Article : </b> {{ publication[5] }} </p>
-            </li>
             {% endfor %}
+                {% else %}
+                {{ erreur }}
+                {% endif %}
+            </li>
         </ul>
     </div>
 {% endblock %}

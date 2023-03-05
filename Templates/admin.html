@@ -13,6 +13,9 @@
           </tr>
         </thead>
         <tbody>
+          {% if erreur %}
+            {{ erreur }}
+            {% endif %}
           {% for article in articles %}
           <tr>
             <td>{{ article[1] }}</td>

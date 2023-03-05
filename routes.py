@@ -26,6 +26,11 @@ def close_connection(exception):
 @app.route('/')
 def index():
     posts = get_db().get_last_five_posts_of_the_day()
+    if not posts:
+        erreur = "Il n'y a pas d'article publié aujourd'hui"
+        return render_template('accueil.html',
+                               title="Publications", posts=posts,
+                               erreur=erreur)
     return render_template('accueil.html', title="Publications", posts=posts)
 
 
@@ -79,9 +84,18 @@ def creer_article():
         auteur = request.form.get('auteur')
         paragraphe = request.form.get('paragraphe')
         date = request.form.get('date_publication')
-        get_db().create_article(titre, identifiant, auteur, date, paragraphe)
 
-        return redirect('/')
+        identifiants = get_db().get_all_articles_id()
+        if identifiant in identifiants:
+            erreur = \
+                'Cet identifiant existe déjà, ' \
+                'veuillez choisir un autre identifiant'
+            return render_template('creation.html',
+                                   erreur=erreur)
+        else:
+            get_db().create_article(titre, identifiant, auteur,
+                                    date, paragraphe)
+            return redirect('/')
 
     return render_template('creation.html')
 
