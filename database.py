@@ -46,7 +46,7 @@ class Database:
     # à la date d'aujourd'hui, il suffit de
     # remplacer date_publication <= DATE('now','localtime') "
     # par date_publication = DATE('now','localtime') "
-    def get_last_five_posts_of_the_day(self):
+    def get_last_five_posts(self):
         cursor = self.get_connection().cursor()
         cursor.execute(
             "select * from article Where date_publication <= "

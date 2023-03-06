@@ -25,7 +25,7 @@ def close_connection(exception):
 
 @app.route('/')
 def index():
-    posts = get_db().get_last_five_posts_of_the_day()
+    posts = get_db().get_last_five_posts()
     if not posts:
         erreur = "Il n'y a pas d'article publié aujourd'hui"
         return render_template('accueil.html',
