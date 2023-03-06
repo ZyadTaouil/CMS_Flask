@@ -41,14 +41,15 @@ class Database:
         new_articles = [article[0] for article in articles]
         return new_articles
 
-    # retourne les 5 derniers articles publiés à la date d'aujourd'hui
-    # pour retourner les 5 derniers articles publiés, il suffit de
-    # remplacer date_publication = DATE('now','localtime') "
-    # par date_publication <= DATE('now','localtime') "
+    # retourne les 5 derniers articles publiés
+    # pour retourner les 5 derniers articles publiés 
+    # à la date d'aujourd'hui, il suffit de
+    # remplacer date_publication <= DATE('now','localtime') "
+    # par date_publication = DATE('now','localtime') "
     def get_last_five_posts_of_the_day(self):
         cursor = self.get_connection().cursor()
         cursor.execute(
-            "select * from article Where date_publication = "
+            "select * from article Where date_publication <= "
             "DATE('now','localtime') "
             "ORDER BY date_publication DESC LIMIT 5")
         publications = cursor.fetchall()
